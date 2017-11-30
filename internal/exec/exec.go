@@ -7,14 +7,14 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/neelance/graphql-go/errors"
-	"github.com/neelance/graphql-go/internal/common"
-	"github.com/neelance/graphql-go/internal/exec/resolvable"
-	"github.com/neelance/graphql-go/internal/exec/selected"
-	"github.com/neelance/graphql-go/internal/query"
-	"github.com/neelance/graphql-go/internal/schema"
-	"github.com/neelance/graphql-go/log"
-	"github.com/neelance/graphql-go/trace"
+	"github.com/lpalmes/graphql-go/errors"
+	"github.com/lpalmes/graphql-go/internal/common"
+	"github.com/lpalmes/graphql-go/internal/exec/resolvable"
+	"github.com/lpalmes/graphql-go/internal/exec/selected"
+	"github.com/lpalmes/graphql-go/internal/query"
+	"github.com/lpalmes/graphql-go/internal/schema"
+	"github.com/lpalmes/graphql-go/log"
+	"github.com/lpalmes/graphql-go/trace"
 )
 
 type Request struct {
@@ -185,6 +185,7 @@ func execFieldSelection(ctx context.Context, r *Request, f *fieldToExec, path *p
 		if f.field.ArgsPacker != nil {
 			in = append(in, f.field.PackedArgs)
 		}
+
 		callOut := f.resolver.Method(f.field.MethodIndex).Call(in)
 		result = callOut[0]
 		if f.field.HasError && !callOut[1].IsNil() {

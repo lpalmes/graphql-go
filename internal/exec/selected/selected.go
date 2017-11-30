@@ -5,13 +5,13 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/neelance/graphql-go/errors"
-	"github.com/neelance/graphql-go/internal/common"
-	"github.com/neelance/graphql-go/internal/exec/packer"
-	"github.com/neelance/graphql-go/internal/exec/resolvable"
-	"github.com/neelance/graphql-go/internal/query"
-	"github.com/neelance/graphql-go/internal/schema"
-	"github.com/neelance/graphql-go/introspection"
+	"github.com/lpalmes/graphql-go/errors"
+	"github.com/lpalmes/graphql-go/internal/common"
+	"github.com/lpalmes/graphql-go/internal/exec/packer"
+	"github.com/lpalmes/graphql-go/internal/exec/resolvable"
+	"github.com/lpalmes/graphql-go/internal/query"
+	"github.com/lpalmes/graphql-go/internal/schema"
+	"github.com/lpalmes/graphql-go/introspection"
 )
 
 type Request struct {
@@ -35,6 +35,8 @@ func ApplyOperation(r *Request, s *resolvable.Schema, op *query.Operation) []Sel
 		obj = s.Query.(*resolvable.Object)
 	case query.Mutation:
 		obj = s.Mutation.(*resolvable.Object)
+	case query.Subscription:
+		obj = s.Subscription.(*resolvable.Object)
 	}
 	return applySelectionSet(r, obj, op.Selections)
 }

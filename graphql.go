@@ -6,17 +6,17 @@ import (
 
 	"encoding/json"
 
-	"github.com/neelance/graphql-go/errors"
-	"github.com/neelance/graphql-go/internal/common"
-	"github.com/neelance/graphql-go/internal/exec"
-	"github.com/neelance/graphql-go/internal/exec/resolvable"
-	"github.com/neelance/graphql-go/internal/exec/selected"
-	"github.com/neelance/graphql-go/internal/query"
-	"github.com/neelance/graphql-go/internal/schema"
-	"github.com/neelance/graphql-go/internal/validation"
-	"github.com/neelance/graphql-go/introspection"
-	"github.com/neelance/graphql-go/log"
-	"github.com/neelance/graphql-go/trace"
+	"github.com/lpalmes/graphql-go/errors"
+	"github.com/lpalmes/graphql-go/internal/common"
+	"github.com/lpalmes/graphql-go/internal/exec"
+	"github.com/lpalmes/graphql-go/internal/exec/resolvable"
+	"github.com/lpalmes/graphql-go/internal/exec/selected"
+	"github.com/lpalmes/graphql-go/internal/query"
+	"github.com/lpalmes/graphql-go/internal/schema"
+	"github.com/lpalmes/graphql-go/internal/validation"
+	"github.com/lpalmes/graphql-go/introspection"
+	"github.com/lpalmes/graphql-go/log"
+	"github.com/lpalmes/graphql-go/trace"
 )
 
 // ParseSchema parses a GraphQL schema and attaches the given root resolver. It returns an error if
@@ -107,6 +107,13 @@ func (s *Schema) Validate(queryString string) []*errors.QueryError {
 	}
 
 	return validation.Validate(s.schema, doc)
+}
+
+func (s *Schema) ExecSubscription(ctx context.Context, queryString string, operationName string, variables map[string]interface{}, payload interface{}) *Response {
+	if s.res == nil {
+		panic("schema created without resolver, can not exec")
+	}
+	return s.exec(ctx, queryString, operationName, variables, s.res)
 }
 
 // Exec executes the given query with the schema's resolver. It panics if the schema was created

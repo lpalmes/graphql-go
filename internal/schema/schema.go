@@ -5,8 +5,8 @@ import (
 	"strings"
 	"text/scanner"
 
-	"github.com/neelance/graphql-go/errors"
-	"github.com/neelance/graphql-go/internal/common"
+	"github.com/lpalmes/graphql-go/errors"
+	"github.com/lpalmes/graphql-go/internal/common"
 )
 
 type Schema struct {

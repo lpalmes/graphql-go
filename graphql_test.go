@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/neelance/graphql-go"
-	"github.com/neelance/graphql-go/example/starwars"
-	"github.com/neelance/graphql-go/gqltesting"
+	"github.com/lpalmes/graphql-go"
+	"github.com/lpalmes/graphql-go/example/starwars"
+	"github.com/lpalmes/graphql-go/gqltesting"
 )
 
 type helloWorldResolver1 struct{}
