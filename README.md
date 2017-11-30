@@ -4,6 +4,10 @@
 [![Build Status](https://semaphoreci.com/api/v1/neelance/graphql-go/branches/master/badge.svg)](https://semaphoreci.com/neelance/graphql-go)
 [![GoDoc](https://godoc.org/github.com/neelance/graphql-go?status.svg)](https://godoc.org/github.com/neelance/graphql-go)
 
+## Fork of github.com/neelance/graphql-go
+
+This project is a fork that supports subscriptions in graphql-go, if and when something more mature has been achived, i would likely send a pr to the original project. Until then, this is a battleground for subscriptions implementation
+
 ## Status
 
 The project is under heavy development. It is stable enough so we use it in production at [Sourcegraph](https://sourcegraph.com), but expect changes.
